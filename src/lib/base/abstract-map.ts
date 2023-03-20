@@ -7,6 +7,7 @@
 import { EEvent, IEventListener } from "../protocol/map/event";
 import { ILaunchOptions } from "../protocol/map/options";
 import { IMapTransform } from "../protocol/map/transform";
+import { GlobalExceptionHandler } from "../utils/GlobalExceptionHandler";
 
 
 export abstract class AbstractMap {
@@ -35,9 +36,11 @@ export abstract class AbstractMap {
 		this._launchOptions = options;
 	}
 	setZoom(zoom: number) {
-		if (this.map) {
-			this.map.setZoom(this.transform.inMapZoom(zoom));
-		}
+		GlobalExceptionHandler.tryCatch(() => {
+			if (this.map) {
+				this.map.setZoom(this.transform.inMapZoom(zoom));
+			}
+		})
 	};
 
 	on(name: EEvent, func: Function) {
