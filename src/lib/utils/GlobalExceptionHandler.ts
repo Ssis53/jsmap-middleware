@@ -12,7 +12,7 @@ export class GlobalExceptionHandler {
 
   static tryCatch(operation: Function) {
     try {
-      operation();
+      return operation();
     } catch (e: any) {
       GlobalExceptionHandler.handleException(e);
     }

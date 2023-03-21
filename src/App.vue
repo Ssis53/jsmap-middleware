@@ -18,7 +18,9 @@ onMounted(() => {
 function handleClick(event: string) {
   switch (event) {
     case 'setZoom':
-      map.setZoom(5);
+      const res = map.setZoom(5);
+      console.log('setZoom返回值:', res);
+      
       break;
   
     default:

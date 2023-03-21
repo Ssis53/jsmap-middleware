@@ -36,9 +36,10 @@ export abstract class AbstractMap {
 		this._launchOptions = options;
 	}
 	setZoom(zoom: number) {
-		GlobalExceptionHandler.tryCatch(() => {
+		return GlobalExceptionHandler.tryCatch(() => {
 			if (this.map) {
 				this.map.setZoom(this.transform.inMapZoom(zoom));
+				return {res: 'sucess'}
 			}
 		})
 	};
